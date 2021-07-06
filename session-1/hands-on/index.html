@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <table border="1">
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+
+      <br /><br />
+
+      <button onclick="countAve(userData)">Count average</button>
+      <h1>
+        Average of age: <span id="answerText" style="color: green"></span>
+      </h1>
+    </div>
+    <script>
+      // Button onClick function to count & show the result   
+      function countAve(users) {
+        let sumTemp = null;
+
+        users.forEach((user) => {
+          sumTemp += user.age;
+        });
+
+        let aveRes = sumTemp / users.length;
+        console.log(`The average of users age are: ${aveRes}`);
+
+        // Printing the result on document
+        let resText = document.getElementById("answerText");
+        resText.innerHTML = aveRes;
+      }
+
+      let userData = [
+        { name: "Harits", age: 20 },
+        { name: "Hamman", age: 21 },
+        { name: "Al Asyhar", age: 18 }
+      ];
+
+      // Looping for printing the name
+      let nameCells = document.querySelectorAll("table tr td:first-child");
+      for (let i = 0; i < nameCells.length; ++i) {
+        nameCells[i].innerHTML = userData[i].name;
+      }
+
+      // Looping for printing the age
+      let ageCells = document.querySelectorAll("table tr td:last-child");
+      for (let i = 0; i < ageCells.length; ++i) {
+        ageCells[i].innerHTML = userData[i].age;
+      }
+    </script>
+  </body>
+</html>
