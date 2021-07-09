@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Playlist</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h1>Create Playlist</h1>
+
+    <form class="createPlaylist--form">
+      <div class="cpForm--field">
+        <label for="playlistTitle">Title</label>
+        <input type="text" name="playlistTitle" id="playlistTitle" />
+      </div>
+      <div class="cpForm--field">
+        <label for="playlistDescription">Description</label>
+        <input
+          type="text"
+          name="playlistDescription"
+          id="playlistDescription"
+        />
+      </div>
+      <button class="cpForm--submitBtn" type="submit" onclick="handleClick()">
+        Submit
+      </button>
+    </form>
+
+    <div class="viewPlaylist--container">
+      <img id="viewPlaylist--image" alt="Playlist Image" />
+      <h4 class="viewPlaylist--context">Track title</h4>
+      <span id="track-title"></span>
+      <h4 class="viewPlaylist--context">Artist</h4>
+      <span id="artist-name"></span>
+      <h4 class="viewPlaylist--context">Album</h4>
+      <span id="album-name"></span>
+      <button class="viewPlaylist--selectBtn">Select</button>
+    </div>
+
+    <script>
+      const handleClick = () => alert("Playlist created!");
+
+      const url =
+        "https://gist.githubusercontent.com/aryapradipta9/e6492383477803b233916e01f36d5465/raw/66942c739d66d3774303f84071696aa865a07077/single-sample.json";
+      const trackTitleField = document.getElementById("track-title");
+      const artistNameField = document.getElementById("artist-name");
+      const albumNameField = document.getElementById("album-name");
+      const albumImage = document.getElementById("viewPlaylist--image");
+
+      const appendPlaylistData = (trackTitle, artistName, albumName) => {
+        trackTitleField.innerHTML = trackTitle;
+        artistNameField.innerHTML = artistName;
+        albumNameField.innerHTML = albumName;
+      };
+
+      axios
+        .get(url)
+        .then((res) => {
+          console.log(res);
+          const data = res.data;
+          let trackTitle = data.name;
+          let artistName = data.artists[0].name;
+          let albumName = data.album.name;
+          let albumImageURL = data.album.images[0].url;
+          appendPlaylistData(trackTitle, artistName, albumName);
+          albumImage.src = albumImageURL;
+        })
+        .catch((err) => {
+          alert("Cannot get data");
+        });
+    </script>
+  </body>
+</html>

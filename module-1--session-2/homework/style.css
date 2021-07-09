@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+    font-size: 100%;
+}
+
+body {
+    padding: 2rem 1.25rem;
+}
+
+.cpForm--field,
+.cpForm--submitBtn {
+    margin-top: 1rem;
+}
+
+.cpForm--field label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.viewPlaylist--container {
+    border: 1px solid black;
+    border-radius: 1rem;
+    background-color: rgba(0,0,0,0.1);
+    padding: 1.25rem;
+    margin-top: 2rem;
+}
+
+#viewPlaylist--image {
+    width: 20%;
+}
+
+.viewPlaylist--context,
+.viewPlaylist--selectBtn {
+    margin: 1rem 0 0.25rem;
+}
+
+.viewPlaylist--selectBtn {
+    display: block;
+    margin-bottom: 0;
+}

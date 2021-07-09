@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+      <br /><br />
+      <button onclick="handleClick()">Count average</button>
+      <h1>
+        Average of age: <span id="answerText" style="color: green"></span>
+      </h1>
+    </div>
+    <script>
+      let userData = [
+        { name: "Harits", age: 20 },
+        { name: "Hamman", age: 21 },
+        { name: "Al Asyhar", age: 18 },
+      ];
+
+      function handleClick() {
+        console.log("Calculation start");
+        wait1(5000)
+        .then(console.log("Second call started"))
+        .then(wait2(2000));
+      }
+
+      const countAve = (users) => {
+        let sumTemp = null;
+        users.forEach((user) => {
+          sumTemp += user.age;
+        });
+
+        let aveRes = sumTemp / users.length;
+        console.log(`The average of users age are: ${aveRes}`);
+
+        // Printing the result on document
+        let resText = document.getElementById("answerText");
+        resText.innerHTML = aveRes;
+      };
+
+      const wait1 = (time) =>
+        new Promise(() => {
+          setTimeout(() => {
+            countAve(userData);
+            console.log("Third call finished");
+          }, time);
+        });
+
+      const wait2 = (time) =>
+        new Promise(() => {
+          setTimeout(() => {
+            console.log("Second call finished");
+            console.log("Third call started");
+          }, time);
+        });
+
+      // Create Table Content
+      const tBody = document.getElementById("tableBody");
+      userData.forEach((user, index) => {
+        let row = tBody.insertRow();
+        let col1 = row.insertCell(0);
+        let col2 = row.insertCell(1);
+        col1.innerHTML = user.name;
+        col2.innerHTML = user.age;
+      });
+    </script>
+  </body>
+</html>
